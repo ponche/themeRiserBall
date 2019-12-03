@@ -1,0 +1,125 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Pagination Stylesheet
+
+******************************************************************/
+
+.scaffolding-page-navi {
+	ul {
+		list-style: none;
+		text-align: center;
+		margin: 2em 0 0.5em;
+		@include flexbox(flex);
+		@include flex-wrap(wrap);
+		@include justify-content(center);
+
+		&:empty {
+			display: none;
+			margin: 0;
+		}
+
+		li {
+			display: inline-block;
+			margin: 0;
+
+			&:empty {
+				display: none;
+				margin: 0;
+			}
+
+			a,
+			span {
+				display: block;
+				margin-left: 0.25em;
+				margin-right: 0.25em;
+				margin-bottom: 0.5em;
+				text-align: center;
+			}
+
+			a,
+			span:not(.dots) {
+				border: 1px solid $color__primary;
+				min-width: 3em;
+				padding: 0.675em;
+			}
+
+			a {
+				color: $color__primary;
+				@include transition(all 0.25s ease-in-out);
+
+				&:hover,
+				&:focus {
+					color: $color__link;
+					text-decoration: none;
+				}
+			}
+
+			span.dots {
+				padding: 0.675em 0.35em;
+			}
+
+			span.current {
+				background-color: $color__primary;
+				color: #FFF;
+			}
+		}
+	}
+}
+
+// fallback previous & next links
+.wp-prev-next {
+	.prev-link {
+		float: left;
+	}
+
+	.next-link {
+		float: right;
+	}
+}
+
+//
+// MOBILE ONLY
+//
+
+@include media-breakpoint-down('sm') {
+
+	.scaffolding-page-navi {
+		a {
+			&.next,
+			&.prev {
+				display: none;
+			}
+		}
+	}
+
+}
+
+//
+// LARGE MOBILE
+//
+
+@include media-breakpoint-up('sm') {
+
+	.scaffolding-page-navi {
+		ul {
+			li {
+				a,
+				span:not(.dots) {
+					padding: 0.5em 1.25em;
+				}
+
+				span.dots {
+					padding: 0.5em;
+				}
+
+				a.next,
+				a.prev {
+					display: block;
+				}
+			}
+		}
+	}
+
+}

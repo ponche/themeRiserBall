@@ -1,0 +1,265 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Media Stylesheet
+
+******************************************************************/
+
+figure {
+	margin: 1em 0;
+}
+
+//
+// Images
+//
+
+img {
+	vertical-align: middle;
+}
+
+.size-auto,
+.size-full,
+.size-large,
+.size-medium,
+.size-thumbnail,
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+// Image Alignment
+img.alignleft,
+.alignleft,
+img.alignright,
+.alignright,
+img.aligncenter,
+.aligncenter,
+img.alignnone,
+.alignnone {
+	display: block;
+	margin: 15px auto;
+}
+
+// Add image alignment for larger screens only
+@include media-breakpoint-up('sm') {
+
+	img.alignleft,
+	.alignleft {
+		float: left;
+		margin: 5px 20px 15px 0;
+	}
+
+	img.alignright,
+	.alignright {
+		float: right;
+		margin: 5px 0 15px 20px;
+	}
+
+	img.aligncenter,
+	.aligncenter {
+		display: block;
+		margin: 15px auto;
+	}
+
+	img.alignnone,
+	.alignnone {
+		clear: both;
+		margin: 15px 0;
+	}
+
+}
+
+// Image Caption
+.wp-caption {
+	background: #EEE;
+	padding: 6px;
+	max-width: 100%;
+
+	// images inside wp-caption
+	img {
+		margin-bottom: 6px;
+		width: 100%;
+		vertical-align: top;
+	}
+}
+
+.wp-caption-text {
+	font-size: 0.85em;
+	text-align: center;
+	font-style: italic;
+}
+
+// Image Gallery
+.gallery {
+	margin-top: 30px;
+	margin-left: -15px;
+	margin-right: -15px;
+	@include flexbox(flex);
+	@include flex-wrap(wrap);
+
+	.gallery-item {
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-bottom: 30px;
+		overflow: hidden;
+		position: relative;
+
+		.gallery-icon {
+			text-align: center;
+
+			a {
+				&:focus {
+					outline: none;
+				}
+
+				img {
+					vertical-align: top;
+				}
+			}
+		}
+	}
+
+	& > br {
+		display: none;
+	}
+}
+
+.gallery-caption {
+	padding: 6px;
+}
+
+.gallery-columns-1 {
+	.gallery-item {
+		width: 100%;
+	}
+}
+
+.gallery-columns-2 {
+	.gallery-item {
+		width: 50%;
+	}
+}
+
+// Galleries no more then 3 to a row on small screens
+.gallery-columns-3,
+.gallery-columns-4,
+.gallery-columns-5,
+.gallery-columns-6,
+.gallery-columns-7,
+.gallery-columns-8,
+.gallery-columns-9 {
+	.gallery-item {
+		width: 33.333%;
+	}
+}
+
+// Change gallery to proper spacing on larger screens
+@include media-breakpoint-up('md') {
+
+	.gallery-columns-4 {
+		.gallery-item {
+			width: 25%;
+		}
+	}
+
+	.gallery-columns-5 {
+		.gallery-item {
+			width: 20%;
+		}
+	}
+
+}
+
+//
+// SVG
+//
+
+svg {
+	width: 100%;
+}
+
+.responsive-svg {
+	height: 0;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+
+	svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+
+//
+// Video
+//
+
+video {
+	height: auto !important;
+	width: 100% !important;
+}
+
+// Core Media Player
+.mejs-container {}
+
+.mejs-controls {}
+
+// Video Player
+.wp-video {
+	margin: 1em 0;
+}
+
+.mejs-video {
+	height: auto !important;
+	padding-top: 57%;
+	width: 100% !important;
+
+	.mejs-inner {
+		.mejs-mediaelement {
+			video {
+				bottom: 0;
+				height: 100% !important;
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 100% !important;
+			}
+		}
+
+		.mejs-layers {
+			.mejs-poster {
+				height: 100% !important;
+				width: 100% !important;
+			}
+		}
+
+		.mejs-overlay-play {
+			height: 100% !important;
+			width: 100% !important;
+		}
+	}
+}
+
+//
+// Audio
+//
+
+// Audio Player
+.mejs-audio {}
+
+// Audio Playlist
+.wp-playlist {
+	overflow: hidden;
+
+	.wp-playlist-caption {
+		display: block;
+
+		.wp-playlist-item-title {
+			@include truncateText(ellipsis);
+		}
+	}
+}

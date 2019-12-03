@@ -1,0 +1,130 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+******************************************************************/
+
+//
+// Fonts
+//
+
+$font__sans: apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif;
+$font__serif: Georgia, Times, "Times New Roman", serif;
+
+
+//
+// Sizes
+//
+
+$size__font-default: 16px;
+
+
+//
+// Colors
+//
+
+// Color Scheme
+// define the color name and purpose (as needed)
+// @link https://flatuicolors.com/palette/defo
+$color__black: #111;
+$color__wet-asphalt: #34495e;
+$color__amethyst: #9b59b6;
+$color__peter-river: #3498db;
+$color__asbestos: #7f8c8d;
+$color__silver: #bdc3c7;
+$color__clouds: #ecf0f1;
+
+$color__body-text: $color__black;
+$color__primary: $color__wet-asphalt;
+$color__secondary: $color__amethyst;
+$color__tertiary: $color__asbestos;
+$color__border: $color__asbestos;
+$color__link: $color__peter-river;
+$color__link-hover: darken($color__peter-river, 10%);
+$color__placeholder-text: $color__asbestos;
+
+$color__alert-yellow: #f1c40f;
+$color__alert-red: #c0392b;
+$color__alert-green: #7ad03a;
+$color__alert-blue: #2ea2cc;
+
+// Social Media
+$color__facebook: #3b5998;
+$color__twitter: #1da1f2;
+$color__linkedin: #007bb5;
+$color__google-plus: #db4437;
+$color__youtube: #ff0000;
+$color__vimeo: #1ab7ea;
+$color__instagram: #c32aa3;
+$color__pinterest: #bd081c;
+
+
+//
+// Forms
+// Integrated with SelectWoo and Gravity Forms
+//
+
+$input__height: 42px;
+$input__border-color: $color__silver;
+$input__border-focus-color: $color__asbestos;
+$input__bg-color: $color__clouds;
+$input__bg-focus-color: #FFF;
+
+
+//
+// Tables
+//
+
+$table__border-color: $color__silver;
+$table__bg-th-color: $color__clouds;
+$table__bg-even-color: #FFF;
+$table__bg-odd-color: lighten($color__clouds, 5%);
+
+
+//
+// Grid Settings
+//
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px
+) !default;
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints);
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px
+) !default;
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+$grid-columns:			12 !default;
+$grid-gutter-width:		30px !default;
+
+
+//
+// Plugin Path
+//
+
+$plugins-path: "/wp-content/plugins/";

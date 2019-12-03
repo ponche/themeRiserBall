@@ -1,0 +1,220 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Forms Stylesheet
+
+******************************************************************/
+
+//
+// Placeholders
+//
+
+@mixin placeholder {
+	::-webkit-input-placeholder {@content}
+	:-moz-placeholder           {@content}
+	::-moz-placeholder          {@content}
+	:-ms-input-placeholder      {@content}
+}
+
+@include placeholder {
+	color: $color__placeholder-text;
+	font-style: italic;
+	font-weight: 400;
+}
+
+@mixin placeholder-focus {
+	[placeholder]:focus::-webkit-input-placeholder {@content}
+	[placeholder]:focus:-moz-placeholder 		   {@content}
+	[placeholder]:focus::-moz-placeholder		   {@content}
+	[placeholder]:focus:-ms-placeholder			   {@content}
+}
+
+@include placeholder-focus {
+	@include transition(opacity 0.25s ease-in-out);
+	opacity: 0;
+}
+
+
+//
+// Labels
+//
+
+label {
+	display: inline-block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+//
+// Inputs
+//
+
+textarea,
+select,
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="search"] {
+	background: $input__bg-color;
+	border: 1px solid $input__border-color;
+	border-radius: 0;
+	color: $color__black;
+	font-size: 1em;
+	letter-spacing: normal;
+	outline: none;
+	@include transition(all 0.25s ease-in-out);
+	width: 100%;
+
+	&:focus,
+	&:active {
+		background: $input__bg-focus-color;
+		border: 1px solid $input__border-focus-color;
+	}
+}
+
+select,
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="search"] {
+	vertical-align: middle;
+	height: $input__height;
+	padding: 0 8px;
+}
+
+input[type="image"] {
+	border: none;
+	padding: 0;
+	width: auto;
+}
+
+input[type="search"] {
+	-webkit-appearance: none;
+}
+
+textarea {
+	resize: vertical;
+	padding: 8px;
+}
+
+// Default select if Javascript is disabled
+select {
+	font-size: 1em;
+	font-family: inherit;
+	padding: 5px !important;
+	overflow: hidden;
+	letter-spacing: normal;
+	border: 0;
+	outline: 1px ridge $input__border-color;
+	-webkit-border-radius: 0;
+	-webkit-appearance: menulist-button;
+
+	option {
+		padding: 2px 10px !important;
+		display: block;
+	}
+
+	&:focus {
+		border: 0;
+		outline: 1px ridge $input__border-focus-color;
+		-webkit-border-radius: 0;
+		-webkit-appearance: menulist-button;
+	}
+}
+
+
+//
+// Submit Buttons
+//
+
+// Submit
+// see _links for button styles
+input[type="submit"],
+input[type="button"],
+button[type="submit"] {
+	@include button;
+	@include button-color($color__primary, #FFF);
+	@include button-lg;
+	@include button-wide;
+
+	background-image: none;
+	border-radius: 0;
+	cursor: pointer;
+	font-family: $font__sans;
+
+	&:focus {
+		outline: thin dotted #333 !important;
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px;
+	}
+}
+
+
+//
+// Custom Forms
+//
+
+#main {
+	.sc-searchform {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		max-width: 481px;
+	}
+}
+
+// Search form
+.sc-searchform {
+	@include flexbox(flex);
+	@include flex-wrap(wrap);
+
+	.sc-searchform-field {
+		@include flex(1 1 80%);
+		width: auto;
+		max-width: 100%;
+	}
+
+	button {
+		font-size: 1em;
+		padding: 0 0.5em;
+		@include flex(1 1 auto);
+		width: auto;
+		max-width: 100%;
+		min-height: $input__height;
+	}
+}
+
+// Password form for private pages
+.post-password-form {
+	label {
+		display: block;
+	}
+
+	input[type="password"] {
+		margin-top: 4px;
+		margin-bottom: 1em;
+	}
+}
+
+
+//
+// MEDIA QUERIES
+//
+
+@include media-breakpoint-up('md') {
+
+	// Password form for private pages
+	.post-password-form {
+		input[type="password"] {
+			display: block;
+			width: 50%;
+		}
+	}
+
+}

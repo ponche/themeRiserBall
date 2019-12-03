@@ -1,0 +1,338 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Mixins & Constants Stylesheet
+
+This is where you can take advantage of Sass' great features:
+Mixins & Constants. I won't go in-depth on how they work exactly,
+there are a few articles below that will help do that. What I will
+tell you is that this will help speed up simple changes like
+changing a color or adding CSS3 techniques like gradients.
+
+A WORD OF WARNING: It's very easy to overdo it here. Be careful and
+remember less is more.
+
+******************************************************************/
+
+@import "compass";
+
+//
+// Clearfix
+//
+
+// http://nicolasgallagher.com/micro-clearfix-hack/
+// @see _classes.scss
+@mixin clearfix {
+	zoom: 1;
+
+	&:after,
+	&:before {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+//
+// Alerts and Notices
+//
+
+@mixin alert {
+	@include flexbox(inline-flex);
+	@include align-items(center);
+	position: relative;
+	padding: 1em 2em;
+	margin: 0 0 2em;
+	background-color: #EEE;
+	border-top-width: 3px;
+	border-top-style: solid;
+	width: 100%;
+
+	&:before {
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+		font-size: 1.5em;
+		display: inline-block;
+		margin-right: 0.875em;
+	}
+}
+
+// 
+// Alignment
+//
+
+// Vertical Align Dynamic Height
+// http://css-tricks.com/centering-in-the-unknown/
+@mixin dynamicVerticalAlign {
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: middle;
+		height: 100%;
+		width: .1px;
+	}
+}
+
+//
+// Typography
+//
+
+// Text Truncate
+// values are: clip, ellipsis, or a string
+@mixin truncateText($overflow: ellipsis) {
+	overflow: hidden;
+	text-overflow: $overflow;
+	white-space: nowrap;
+}
+
+//
+// Media Queries
+//
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+	$min: breakpoint-min($name, $breakpoints);
+	@if $min {
+		@media (min-width: $min) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+	$max: breakpoint-max($name, $breakpoints);
+	@if $max {
+		@media (max-width: $max) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+	$min: breakpoint-min($lower, $breakpoints);
+	$max: breakpoint-max($upper, $breakpoints);
+
+	@if $min != null and $max != null {
+		@media (min-width: $min) and (max-width: $max) {
+			@content;
+		}
+	} @else if $max == null {
+		@include media-breakpoint-up($lower, $breakpoints) {
+			@content;
+		}
+	} @else if $min == null {
+		@include media-breakpoint-down($upper, $breakpoints) {
+			@content;
+		}
+	}
+}
+
+// Media between the breakpoint's minimum and maximum widths.
+// No minimum for the smallest breakpoint, and no maximum for the largest one.
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+	$min: breakpoint-min($name, $breakpoints);
+	$max: breakpoint-max($name, $breakpoints);
+
+	@if $min != null and $max != null {
+		@media (min-width: $min) and (max-width: $max) {
+			@content;
+		}
+	} @else if $max == null {
+		@include media-breakpoint-up($name, $breakpoints) {
+			@content;
+		}
+	} @else if $min == null {
+		@include media-breakpoint-down($name, $breakpoints) {
+			@content;
+		}
+	}
+}
+
+// 
+// Gradients
+//
+
+// USAGE: @include css-gradient(#dfdfdf,#f8f8f8);
+@mixin css-gradient($from: #dfdfdf, $to: #f8f8f8) {
+	background-color: $to;
+	background-image: -webkit-linear-gradient(top, $from, $to);
+	background-image: linear-gradient(to bottom, $from, $to);
+}
+
+// 
+// Flexbox
+// Mixins provided by: https://github.com/mastastealth/sass-flex-mixin/blob/master/_flex.scss
+//
+
+// DISPLAY FLEX
+// Values: flex | inline-flex
+// Default: flex
+// USAGE: @include flexbox(flex);
+@mixin flexbox($value: flex) {
+	@if $value == inline-flex {
+		display: -webkit-inline-box;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+	} @else {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+	}
+}
+
+// FLEXBOX WRAP
+// Values: nowrap | wrap | wrap-reverse
+// Default: nowrap
+// USAGE: @include flex-wrap(nowrap)
+@mixin flex-wrap($value: nowrap) {
+	-ms-flex-wrap: $value; 
+	flex-wrap: $value;
+}
+
+// FLEXBOX DIRECTION
+// Values: row | row-reverse | column | column-reverse
+// Default: row
+// USAGE: @include flex-direction(row)
+@mixin flex-direction($value: row) {
+	@if $value == row-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: horizontal;
+	} @else if $value == column {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: vertical;
+	} @else if $value == column-reverse {
+		-webkit-box-direction: reverse;
+		-webkit-box-orient: vertical;
+	} @else {
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+	}
+	-ms-flex-direction: $value;
+	flex-direction: $value;
+}
+
+// FLEXBOX JUSTIFY CONTENT
+// Values: flex-start | flex-end | center | space-between | space-around
+// Default: flexstart
+// USAGE: @include justify-content(flex-start)
+@mixin justify-content($value: flex-start) {
+	@if $value == flex-start {
+		-webkit-box-pack: start;
+		-ms-flex-pack: start;
+	} @else if $value == flex-end {
+		-webkit-box-pack: end;
+		-ms-flex-pack: end;
+	} @else if $value == space-between {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+	} @else if $value == space-around {
+		-ms-flex-pack: distribute;		
+	} @else {
+		-webkit-box-pack: $value;
+		-ms-flex-pack: $value;
+	}
+	justify-content: $value;
+}
+
+// FLEXBOX ALIGN ITEMS
+// Values: flex-start | flex-end | center | baseline | stretch
+// Default: stretch
+// USAGE: @include align-items(stretch)
+@mixin align-items($value: stretch) {
+	@if $value == flex-start {
+		-webkit-box-align: start;
+		-ms-flex-align: start;
+	} @else if $value == flex-end {
+		-webkit-box-align: end;
+		-ms-flex-align: end;
+	} @else {
+		-webkit-box-align: $value;
+		-ms-flex-align: $value;
+	}
+	-ms-grid-row-align: $value;
+	align-items: $value;
+}
+
+// FLEXBOX ALIGN SELF
+// Values: auto | flex-start | flex-end | center | baseline | stretch
+// Default: auto
+// USAGE: @include align-self(auto)
+@mixin align-self($value: auto) {
+	@if $value == flex-start {
+		-ms-flex-item-align: start;
+	} @else if $value == flex-end {
+		-ms-flex-item-align: end;
+	} @else {
+		-ms-flex-item-align: $value;
+	}
+	align-self: $value;
+}
+
+// FLEXBOX FLEX (shorthand)
+// Values: Values: none | <flex-grow> <flex-shrink> || <flex-basis>
+// Default: See individual properties (1 1 0).
+// USAGE: @include flex(1, 1, auto)
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+	// Set a variable to be used by box-flex properties
+	$fg-boxflex: $fg;
+	// Box-Flex only supports a flex-grow value so let's grab the
+	// first item in the list and just return that.
+	@if type-of($fg) == 'list' {
+		$fg-boxflex: nth($fg, 1);
+	}
+	-webkit-box-flex: $fg-boxflex;
+	-ms-flex: $fg $fs $fb;
+	flex: $fg $fs $fb;
+}
+
+// FLEXBOX GROW
+// Values: positive integer
+// Default: 0
+// USAGE: @include flex-grow(0)
+@mixin flex-grow($int: 0) {
+	-webkit-box-flex: $int;
+	-ms-flex-positive: $int;
+	flex-grow: $int;
+}
+
+// FLEXBOX SHRINK
+// Values: positive integer
+// Default: 1
+// USAGE: @include flex-shrink(1)
+@mixin flex-shrink($int: 1) {
+	-ms-flex-negative: $int;
+	flex-shrink: $int;
+}
+
+// FLEXBOX BASIS
+// Values: An absolute <length>, a <percentage> of the parent flex container's main size property, or the keyword auto. Negative values are invalid.
+// Default: auto
+// USAGE: @include flex-basis($width)
+@mixin flex-basis($width: auto) {
+	-ms-flex-preferred-size: $width;
+	flex-basis: $width;
+}
+
+// FLEXBOX ORDER
+// Values: integer
+// Default: 0
+// USAGE: @include order(0)
+@mixin order($int: 0) {
+	-webkit-box-ordinal-group: $int + 1;
+	-ms-flex-order: $int;
+	order: $int;
+}

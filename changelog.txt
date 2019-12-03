@@ -1,0 +1,103 @@
+# Changelog
+
+## Version 3.1
+
+* Update jquery-doubletaptogo library and enqueue it
+* Update and format code to be more inline with WP standards
+* Properly enqueue login stylesheet
+* Update pagination to use native WP function instead
+* Move Walker nav class into separate file
+* Add EditorConfig and PHP CodeSniffer Config
+* Add theme support for custom logo
+* Add post meta utility function
+* Add `wp_body_open` hook
+* Update deprecated filter `login_headertitle`
+* Search improvements
+* Update cache busting technique to grab the modified file date instead
+* Some variable color refactoring and guidelines
+* Basic Gutenberg support
+* Add support for CommonWP plugin
+* Update Font Awesome to version 5.10.1
+
+## Version 3.0
+
+* General theme cleanup - add comments and fix spacing
+* Upgrade Bootstrap Grid to version 4.1.0
+* Mobile menu updates - add animation on open/close
+* Main menu style improvements
+* Remove support for IE8
+* Fix bug with `pre_get_posts` search filter returning zero results
+* Rebuild sitemap page template functions
+* Add full width page template
+* Update Modernizr script to version 3.6.0
+* Update Retina script to version 2.1.2
+* Update SelectWoo script to version 1.0.2
+* Update Font Awesome to version 5.0.13 and add sass folder
+* Add retina sass include file
+* Comments template and style edits
+* Update sticky footer styles to use flexbox
+* Update back to top link to make it scalable
+* Update banner image
+* Cleanup Gravity Forms styles
+* Cleanup SelectWoo styles
+* Remove old css browser prefixes
+* Remove dated mixins
+* Run php CodeSniffer to format the theme
+
+## Version 2.1
+
+* Remove filter stripping version from scripts and styles
+* Improved mobile navigation and bug fixes
+* Replaced Select2 with SelectWoo
+* Update Font Awesome to version 4.7.0
+* Remove image alignment on mobile
+* Added default Tinymce settings for client proofing
+* Add button styles
+* Update Normalize to version 5.0.0
+* Remove searchform filter in favor of template file
+* Updated Bootstrap to version 3.3.7
+* Pagination improvements
+* Added gulp script
+* Remove `set_post_thumbnail_size`
+* General template cleanup
+* Remove filter stripping image dimensions
+* Updated placeholder styles
+* Gravity Forms style edits
+* Remove first and last classes in favor of pseudo classes
+* Added Gravity Forms customization include file
+* Remove support for IE 7
+* Update Retina.js to version 2.1.1
+* Update gravatars to use `get_avatar` function
+* Hyphenate long titles
+
+## Version 2.0
+
+* Added this file
+* Cleaned and organized all theme templates and files
+* Implemented coding best practices as outlined by the WordPress codex
+* Added more documentation and comments to code
+* Updated scripts to latest versions and added to theme rather than CDN
+* Removed related posts function
+* Added new function for adding first and last classes to menus in base-functions.php, now works with nested ul items
+* Updated and added new tinymce functions for ease of customization
+* Added theme page to Appearances menu
+* Updated pre_get_posts functions for use only on the frontend
+* Removed custom-post-type.php example
+* Removed iCheck, too many problems
+* Improved magnific popup script in scripts.js to work with built-in WordPress gallery
+* Added "equal height" div script
+* Improved main navigation functionality and styles
+* Responsive style improvements
+* Form style improvements
+* Added templates folder
+* Added sidebar.php
+* Various other tweaks and improvements
+* Replaced ChosenJS with Select2
+* Added template-parts folder
+* Gravity Forms style updates - compatibility with Version 2.0.2
+* Added flexbox mixins
+* Table style improvements
+
+## Version 1.0
+
+* Initial version
