@@ -64,35 +64,6 @@ jQuery(document).ready(function($) {
 		setup_selectWoo();
 	}
 
-	// Lightbox - http://dimsemenov.com/plugins/magnific-popup/
-	if ($.fn.magnificPopup) {
-		$image_selector = 'a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"], a[href$=".gif"]';
-
-		// single image popup
-		$($image_selector).each(function(){
-			if ($(this).parents('.gallery').length == 0) {
-				$(this).magnificPopup({type:'image'});
-			}
-		});
-
-		// gallery popup
-		$('.gallery').each(function() {
-			$(this).magnificPopup({
-				type: 'image',
-				delegate: $image_selector,
-				gallery: {
-					enabled: true,
-					preload: [1,2]
-				},
-				image: {
-					titleSrc: function(item) {
-						return item.el.parents('.gallery-item').find('.gallery-caption').text();
-					}
-				}
-			});
-		});
-	}
-
 	// Responsive iFrames, Embeds and Objects - http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php
 	var $allVideos = $("iframe[src*='youtube'], iframe[src*='hulu'], iframe[src*='revision3'], iframe[src*='vimeo'], iframe[src*='blip'], iframe[src*='dailymotion'], iframe[src*='funnyordie'], object, embed").wrap( "<figure></figure>" );
 
