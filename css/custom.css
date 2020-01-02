@@ -1,0 +1,15 @@
+
+@font-face {
+    font-family: 'Bad Signal Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Bad Signal Regular'), url('https://remi-ponche.fr/download/riserball/font/BadSignal.woff') format('woff');
+}
+
+
+.page-content h2
+{
+    font-family: 'Bad Signal Regular';
+    font-weight: normal;
+    color: red ;
+}

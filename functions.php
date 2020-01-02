@@ -84,6 +84,10 @@ function scaffolding_scripts_and_styles() {
 	// update this to include only what you need to test.
 	wp_enqueue_script( 'scaffolding-modernizr', get_stylesheet_directory_uri() . '/libs/js/custom-modernizr.min.js', array(), '3.6.0', false );
 
+	// RiserBall 
+	// custom style for the site RiserBall
+	wp_enqueue_style( 'custom-riserball', get_stylesheet_directory_uri() . '/css/custom.css', array());
+
 	/**
 	 * Add to wp_footer()
 	 */
