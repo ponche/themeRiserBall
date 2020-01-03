@@ -44,7 +44,7 @@
 							<?php the_custom_logo(); ?>
 						<?php else : ?>
 							<a class="logo-txt" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" itemprop="url">
-								<span class="h1"><?php bloginfo( 'name' ); ?></span>
+								<img src="<?php echo ( get_stylesheet_directory_uri() . '/images/headers/titre-riserball.png') ; ?>" alt="Riser Ball" />
 							</a>
 						<?php endif; ?>
 					</div>
