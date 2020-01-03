@@ -6,8 +6,17 @@
     src: local('Bad Signal Regular'), url('https://remi-ponche.fr/download/riserball/font/BadSignal.woff') format('woff');
 }
 
+.page-title 
+{
+    text-decoration: underline;
+}
 
 .page-content h2
+{
+    font-style: italic;
+}
+
+.page-content h2, .page-title
 {
     font-family: 'Bad Signal Regular';
     font-weight: normal;
